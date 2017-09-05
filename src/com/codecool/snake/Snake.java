@@ -8,8 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.PrimitiveIterator;
 
 public class Snake extends Application {
@@ -21,11 +26,25 @@ public class Snake extends Application {
         game.stop();
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+
+        ButtonType restartButton = new ButtonType("Restart", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        List<ButtonType> buttonList = new ArrayList();
+        buttonList.add(restartButton);
+        buttonList.add(cancelButton);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("You're dead: Game Over");
         alert.setContentText("Score: " + score);
-        alert.setOnHidden(evt -> Platform.exit());
+        alert.getButtonTypes().setAll(buttonList);
+        alert.setOnHidden(evt -> {
+            if(alert.getResult() == restartButton){
+
+            } else {
+                Platform.exit();
+            }
+        });
         alert.show();
     }
 
