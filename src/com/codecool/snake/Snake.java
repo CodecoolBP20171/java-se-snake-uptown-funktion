@@ -24,6 +24,7 @@ public class Snake extends Application {
         RestartButton restartButton = new RestartButton();
 
         restartButton.setOnAction(e-> {
+
             game.stop();
 
             for (GameEntity entity : Globals.getGameObjects()) entity.destroy();

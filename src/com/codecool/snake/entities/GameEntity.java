@@ -22,11 +22,11 @@ public abstract class GameEntity extends ImageView {
         Globals.removeGameObject(this);
     }
 
-    protected boolean isOutOfBounds() {
-        if (getX() > Globals.WINDOW_WIDTH || getX() < 0 ||
-            getY() > Globals.WINDOW_HEIGHT || getY() < 0) {
-            return true;
-        }
-        return false;
+    protected String isOutOfBounds() {
+        if (getX() > Globals.WINDOW_WIDTH-35) return "right";
+        else if (getX() < 0+5) return "left";
+        else if (getY() > Globals.WINDOW_HEIGHT-35) return "bottom";
+        else if (getY() < 0+5) return"top";
+        return "in";
     }
 }
