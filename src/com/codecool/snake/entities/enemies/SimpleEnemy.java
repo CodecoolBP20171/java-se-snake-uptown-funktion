@@ -46,40 +46,13 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         String isBounce = isOutOfBounds();
         if (!isBounce.equals("in")) {
             //destroy();
+            /*
             System.out.println("x" + getX() + " y " + getY());
             System.out.println("Bouncing " + this.id + " from " + isBounce);
             System.out.println("pre " + direction);
-
-            /*
-                    if (getX() > Globals.WINDOW_WIDTH || getX() < 0 ||
-            getY() > Globals.WINDOW_HEIGHT || getY() < 0) {
-             */
-
-            /*
-            if (getY() < 0) direction = 90+direction;
-            System.out.println("post " + direction);
             */
-
-            if (getX() > Globals.WINDOW_WIDTH-35) {
-                System.out.println("Bouncing from right");
-                direction = - direction;
-            }
-            else if (getX() < 0+5) {
-                System.out.println("Bouncing from left");
-                direction = - direction;
-            }
-            else if (getY() > Globals.WINDOW_HEIGHT-35) {
-                System.out.println("Bouncing from bottom");
-                direction = 180 - direction;
-            }
-            else {
-                System.out.println("Bouncing from top");
-                direction = 180 - direction;
-            }
-
-            //direction = direction < 90 ? direction+90 : direction-90;
-            //System.out.println("pre: " + direction);
-            //direction += 90;
+            if (isBounce.equals("right") || isBounce.equals("left")) direction = - direction;
+            else direction = 180 - direction;
 
             if (direction > 360) direction -= 360;
             else if (direction < 0) direction += 360;
@@ -94,14 +67,6 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
             double nextY = getY() + heading.getY();
             if (nextY > Globals.WINDOW_HEIGHT-35) setY(heading.getY() + Globals.WINDOW_HEIGHT-35-5);
             else if (nextY < +5) setY(heading.getY() + 0+5+5);
-
-            System.out.println("x " + getX() + " y " + getY());
-            System.out.println();
-
-            /*
-            if (getX() > Globals.WINDOW_WIDTH-35 || getX() < 0+5 ||
-            getY() > Globals.WINDOW_HEIGHT-35 || getY() < 0+5)
-             */
         }
             setX(getX() + heading.getX());
             setY(getY() + heading.getY());
