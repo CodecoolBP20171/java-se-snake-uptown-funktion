@@ -48,18 +48,18 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         boolean looper = true;
       
         while (looper) {
-            Random rnd = new Random();
-            if (!checkCoordinate(rnd, snake)) {
+            Random rndSpawn = new Random();
+            if (!checkCoordinate(rndSpawn, snake)) {
                 if((snake.getY() + (double) 10 >
-                        enemyCoordinateY(rnd) && snake.getY() - (double) 10 <
-                        enemyCoordinateY(rnd)) ||
+                        enemyCoordinateY(rndSpawn) && snake.getY() - (double) 10 <
+                        enemyCoordinateY(rndSpawn)) ||
                         (snake.getX() + (double) 10 >
-                                enemyCoordinateX(rnd) && snake.getX() - (double) 10 <
-                                enemyCoordinateX(rnd))) {
+                                enemyCoordinateX(rndSpawn) && snake.getX() - (double) 10 <
+                                enemyCoordinateX(rndSpawn))) {
 
-                    setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-                    setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-                    double direction = rnd.nextDouble() * 360;
+                    setX(rndSpawn.nextDouble() * Globals.WINDOW_WIDTH);
+                    setY(rndSpawn.nextDouble() * Globals.WINDOW_HEIGHT);
+                    double direction = rndSpawn.nextDouble() * 360;
                     setRotate(direction);
                     heading = Utils.directionToVector(direction, speed);
                     looper = false;
