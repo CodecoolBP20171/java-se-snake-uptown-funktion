@@ -6,8 +6,6 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.input.MouseEvent;
-
 
 public class Game extends Pane {
 
