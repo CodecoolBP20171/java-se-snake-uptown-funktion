@@ -8,14 +8,11 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Random;
 
 
 // a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+public class GhostEnemy extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
@@ -27,11 +24,11 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public static int numberOfSimpleEnemies=0;
 
     public int id;
-  
-    public SimpleEnemy(Pane pane, SnakeHead snake) {
+
+    public GhostEnemy(Pane pane, SnakeHead snake) {
         super(pane);
         this.pane = pane;
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.GhostEnemy);
         pane.getChildren().add(this);
 
         speed = 1;
@@ -46,7 +43,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         this.id = ++numberOfSimpleEnemies;
 
         boolean looper = true;
-      
+
         while (looper) {
             Random rndSpawn = new Random();
             if (!checkCoordinate(rndSpawn, snake)) {
@@ -72,37 +69,20 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         String isBounce = isOutOfBounds();
         if (!isBounce.equals("in")) {
-            //destroy();
-            /*
-            System.out.println("x" + getX() + " y " + getY());
-            System.out.println("Bouncing " + this.id + " from " + isBounce);
-            System.out.println("pre " + direction);
-            */
-            if (isBounce.equals("right") || isBounce.equals("left")) direction = - direction;
-            else direction = 180 - direction;
-
-            if (direction > 360) direction -= 360;
-            else if (direction < 0) direction += 360;
-
-            setRotate(direction);
-            heading = Utils.directionToVector(direction, speed);
-
-            double nextX = (getX() + heading.getX());
-            if ( nextX > Globals.WINDOW_WIDTH-35 ) setX(heading.getX() + Globals.WINDOW_WIDTH-35-5);
-            else if (nextX < 0+5) setX(heading.getX() + 0+5+5);
-            double nextY = getY() + heading.getY();
-            if (nextY > Globals.WINDOW_HEIGHT-35) setY(heading.getY() + Globals.WINDOW_HEIGHT-35-5);
-            else if (nextY < +5) setY(heading.getY() + 0+5+5);
+            if (isBounce.equals("right")) setX(0 + 5);
+            else if (isBounce.equals("left")) setX(Globals.WINDOW_WIDTH - 35);
+            else if (isBounce.equals("top")) setY(Globals.WINDOW_HEIGHT - 35);
+            else setY(0 + 5);
         }
-            setX(getX() + heading.getX());
-            setY(getY() + heading.getY());
+        setX(getX() + heading.getX());
+        setY(getY() + heading.getY());
     }
 
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
-        new SimpleEnemy(pane, player);
+        new GhostEnemy(pane, player);
     }
 
     @Override
@@ -117,8 +97,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
                     enemyCoordinateY(random) && snakePart.getY() - (double) 10 <
                     enemyCoordinateY(random)) ||
                     (snakePart.getX() + (double) 10 >
-                    enemyCoordinateX(random) && snakePart.getX() - (double) 10 <
-                    enemyCoordinateX(random))) return true;
+                            enemyCoordinateX(random) && snakePart.getX() - (double) 10 <
+                            enemyCoordinateX(random))) return true;
         }
         return false;
     }

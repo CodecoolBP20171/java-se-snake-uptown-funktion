@@ -43,8 +43,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         // set rotation and position
         setRotate(dir);
         Point2D heading = Utils.directionToVector(dir, speed);
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+        //setX(getX() + heading.getX());
+        //setY(getY() + heading.getY());
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
@@ -58,7 +58,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
 
         // check for game over condition
-        if (!isOutOfBounds().equals("in") || health <= 0) {
+        if (!isOutOfBounds().equals("in") ) { //|| health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
             int score = (int) Globals.getGameObjects().stream()
