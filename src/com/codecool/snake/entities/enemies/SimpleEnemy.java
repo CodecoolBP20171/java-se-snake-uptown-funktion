@@ -17,19 +17,29 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     private Point2D heading;
     private static final int damage = 10;
 
-    public SimpleEnemy(Pane pane) {
+    public SimpleEnemy(Pane pane, SnakeHead snake) {
         super(pane);
 
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
         int speed = 1;
-        Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+        boolean looper = true;
+
+        //  + snakebody position needed
+        while (looper) {
+            Random rnd = new Random();
+            if (snake.getX() != rnd.nextDouble() * Globals.WINDOW_WIDTH ||
+                    snake.getY() != rnd.nextDouble() * Globals.WINDOW_HEIGHT) {
+
+                setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+                setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+                double direction = rnd.nextDouble() * 360;
+                setRotate(direction);
+                heading = Utils.directionToVector(direction, speed);
+                looper = false;
+            }
+        }
     }
 
     @Override

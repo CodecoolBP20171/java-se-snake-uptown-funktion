@@ -10,12 +10,12 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500);
+        SnakeHead snakeHead= new SnakeHead(this, 500, 500);
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
+        new SimpleEnemy(this, snakeHead);
+        new SimpleEnemy(this, snakeHead);
+        new SimpleEnemy(this, snakeHead);
+        new SimpleEnemy(this, snakeHead);
 
         new SimplePowerup(this);
         new SimplePowerup(this);
