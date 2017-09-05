@@ -1,11 +1,8 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -14,13 +11,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.PrimitiveIterator;
 
 public class Snake extends Application {
 
     public static Stage primaryStage;
     public static Game game;
+    public static RestartButton restartButton;
 
     public static void gameOver(int score) {
         game.stop();
@@ -40,12 +36,23 @@ public class Snake extends Application {
         alert.getButtonTypes().setAll(buttonList);
         alert.setOnHidden(evt -> {
             if(alert.getResult() == restartButton){
-
+                restart();
             } else {
                 Platform.exit();
             }
         });
         alert.show();
+    }
+
+    public static void restart() {
+        game.stop();
+        for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
+        game.getChildren().clear();
+        game = new Game();
+        game.getChildren().add(restartButton);
+        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        game.start();
+
     }
 
     @Override
@@ -57,21 +64,10 @@ public class Snake extends Application {
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.show();
 
-        RestartButton restartButton = new RestartButton();
+        this.restartButton = new RestartButton();
 
         restartButton.setOnAction(e-> {
-            game.stop();
-
-            for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
-
-            game.getChildren().clear();
-
-
-            Game newGame = new Game();
-            newGame.getChildren().add(restartButton);
-
-            primaryStage.setScene(new Scene(newGame, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-            newGame.start();
+            restart();
         });
 
         game.getChildren().add(restartButton);
