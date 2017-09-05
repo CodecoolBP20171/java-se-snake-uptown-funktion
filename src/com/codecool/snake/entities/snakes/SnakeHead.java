@@ -69,4 +69,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
     }
+
+    private int getHealth() {return health;}
 }
