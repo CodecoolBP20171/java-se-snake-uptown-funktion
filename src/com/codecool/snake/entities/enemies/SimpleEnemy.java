@@ -21,19 +21,32 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     private static final int damage = 10;
     private Pane pane;
 
+    public double direction;
+    public int speed;
+
+    public static int numberOfSimpleEnemies=0;
+
+    public int id;
+  
     public SimpleEnemy(Pane pane, SnakeHead snake) {
         super(pane);
         this.pane = pane;
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
+
+        speed = 1;
+        Random rnd = new Random();
+        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+
+        direction = rnd.nextDouble() * 360;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
+
+        this.id = ++numberOfSimpleEnemies;
 
         boolean looper = true;
-
-        DecimalFormat df = new DecimalFormat("#");
-        df.setRoundingMode(RoundingMode.CEILING);
-
-
+      
         while (looper) {
             Random rnd = new Random();
             if (!checkCoordinate(rnd, snake)) {
@@ -57,11 +70,33 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public void step() {
-        if (isOutOfBounds()) {
-            destroy();
+        String isBounce = isOutOfBounds();
+        if (!isBounce.equals("in")) {
+            //destroy();
+            /*
+            System.out.println("x" + getX() + " y " + getY());
+            System.out.println("Bouncing " + this.id + " from " + isBounce);
+            System.out.println("pre " + direction);
+            */
+            if (isBounce.equals("right") || isBounce.equals("left")) direction = - direction;
+            else direction = 180 - direction;
+
+            if (direction > 360) direction -= 360;
+            else if (direction < 0) direction += 360;
+            System.out.println("post " + direction);
+
+            setRotate(direction);
+            heading = Utils.directionToVector(direction, speed);
+
+            double nextX = (getX() + heading.getX());
+            if ( nextX > Globals.WINDOW_WIDTH-35 ) setX(heading.getX() + Globals.WINDOW_WIDTH-35-5);
+            else if (nextX < 0+5) setX(heading.getX() + 0+5+5);
+            double nextY = getY() + heading.getY();
+            if (nextY > Globals.WINDOW_HEIGHT-35) setY(heading.getY() + Globals.WINDOW_HEIGHT-35-5);
+            else if (nextY < +5) setY(heading.getY() + 0+5+5);
         }
-        setX(getX() + heading.getX());
-        setY(getY() + heading.getY());
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());
     }
 
     @Override

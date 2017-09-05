@@ -67,8 +67,9 @@ public class Snake extends Application {
         this.restartButton = new RestartButton();
 
         restartButton.setOnAction(e-> {
-            restart();
-        });
+      
+            restart();  
+         });
 
         game.getChildren().add(restartButton);
 
