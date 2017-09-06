@@ -15,7 +15,8 @@ public class GameLoop extends AnimationTimer {
                 Animatable animObject = (Animatable)gameObject;
                 animObject.step();
                 if (gameObject instanceof SnakeHead) {
-                    Snake.health.setText("Health: " + Integer.toString(((SnakeHead) gameObject).getHealth()));
+                    Snake.health.setText("Health: 100/" + Integer.toString(((SnakeHead) gameObject).getHealth()));
+                    Snake.ammo.setText("Ammo: " + Integer.toString(((SnakeHead) gameObject).getAmmo()));
                 }
             }
         }

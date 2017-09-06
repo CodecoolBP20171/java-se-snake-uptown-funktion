@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Snake extends Application {
     public static Game game;
     public static RestartButton restartButton;
     public static Label health;
+    public static Label ammo;
 
     public static void gameOver(int score) {
         game.stop();
@@ -50,10 +52,12 @@ public class Snake extends Application {
         game.stop();
         Globals.leftKeyDown = false;
         Globals.rightKeyDown = false;
+        Globals.score = 0;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
         game = new Game();
         setupHealthBar();
+        setupAmmoBar();
         game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         game.start();
@@ -63,7 +67,17 @@ public class Snake extends Application {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 80px;");
+        health.setTextFill(Color.web("ff0000"));
         game.getChildren().add(health);
+    }
+
+    public static void setupAmmoBar() {
+        ammo = new Label();
+        ammo.setStyle("-fx-font-size: 20px;" +
+                "-fx-padding: 0px 0px 0px 250px;" +
+                "-fx-color: blue;");
+        ammo.setTextFill(Color.web("0000ff"));
+        game.getChildren().add(ammo);
     }
 
     @Override
@@ -79,6 +93,7 @@ public class Snake extends Application {
         this.restartButton = new RestartButton();
 
         setupHealthBar();
+        setupAmmoBar();
         restartButton.setOnAction(e-> restart());
 
         game.getChildren().add(restartButton);

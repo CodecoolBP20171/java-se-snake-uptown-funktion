@@ -32,6 +32,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     private List<GameEntity> snakeParts = new ArrayList<>();
+    private int ammo;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -39,10 +40,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         health = 100;
         tail = this;
+        ammo = 3;
         setImage(snakeHead);
         pane.getChildren().add(this);
         addPart(4);
-
     }
 
     public void step() {
@@ -54,12 +55,13 @@ public class SnakeHead extends GameEntity implements Animatable {
             dir = dir + turnRate;
         }
 
-        if (Globals.laserKeyDown ) {
+        if (Globals.laserKeyDown && ammo > 0) {
             long timeFromLastShoot = System.currentTimeMillis() - lastTimeOfShot;
 //            System.out.println(timeFromLastShoot);
             if (timeFromLastShoot > 1000) {
                 new SnakeMissile(pane, this);
                 lastTimeOfShot = System.currentTimeMillis();
+                ammo--;
             }
         }
         // set rotation and position
@@ -83,9 +85,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (!isOutOfBounds().equals("in") || health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
-            int score = (int) Globals.getGameObjects().stream()
-                    .filter(w -> w instanceof SnakeBody).count();
-            Snake.gameOver(score);
+            Globals.score += (int) Globals.getGameObjects().stream()
+                    .filter(w -> w instanceof SnakeBody).count()-4;
+            Snake.gameOver(Globals.score);
         }
     }
 
@@ -106,4 +108,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public int getHealth() {return health;}
+
+    public int getAmmo() {return ammo;}
+
+    public void changeAmmo(int diff) { ammo += diff; }
 }

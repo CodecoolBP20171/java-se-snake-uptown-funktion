@@ -4,6 +4,7 @@ package com.codecool.snake.entities.laser;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import com.sun.jmx.snmp.SnmpEngine;
 import javafx.geometry.Point2D;
@@ -37,6 +38,9 @@ public abstract class Laser extends GameEntity implements Animatable{
         //check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (isInteract(entity)) {
+                if (entity instanceof Enemy) {
+                    Globals.score += 1;
+                }
                 shot(entity);
             }
         }
