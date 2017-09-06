@@ -1,18 +1,30 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.laser.Laser;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codecool.snake.Globals.snakeHead;
+
 public class SnakeHead extends GameEntity implements Animatable {
+
+    public static long laserShootTime;
+    public static long lastTimeOfShot;
+
+    public static float getSpeed() {
+        return speed;
+    }
 
     private static final float speed = 2;
     private static final float turnRate = 2;
@@ -26,7 +38,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         health = 100;
         tail = this;
-        setImage(Globals.snakeHead);
+        setImage(snakeHead);
         pane.getChildren().add(this);
         addPart(4);
 
@@ -39,6 +51,15 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         if (Globals.rightKeyDown) {
             dir = dir + turnRate;
+        }
+
+        if (Globals.laserKeyDown ) {
+            long timeFromLastShoot = System.currentTimeMillis() - lastTimeOfShot;
+            System.out.println(timeFromLastShoot);
+            if (timeFromLastShoot > 1000) {
+                new Laser(pane, this);
+                lastTimeOfShot = System.currentTimeMillis();
+            }
         }
         // set rotation and position
         setRotate(dir);
