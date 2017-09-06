@@ -18,9 +18,11 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image GhostEnemy = new Image("ghost_icon.png");
+    public static Image turretEnemy = new Image("turret_icon.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image powerupHealth = new Image("powerup_health.png");
-    public static Image Laser = new Image("snake_body.png");
+    public static Image snakeMissile = new Image("snake_missile.png");
+    public static Image turretMissile = new Image("turret_missile.png");
 
     //.. put here the other images you want to use
 
