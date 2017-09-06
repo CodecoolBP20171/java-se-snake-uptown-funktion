@@ -46,6 +46,8 @@ public class Snake extends Application {
 
     public static void restart() {
         game.stop();
+        Globals.leftKeyDown = false;
+        Globals.rightKeyDown = false;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
         game = new Game();
