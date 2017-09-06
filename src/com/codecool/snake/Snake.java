@@ -53,11 +53,10 @@ public class Snake extends Application {
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
         game = new Game();
-        game.getChildren().add(restartButton);
         setupHealthBar();
+        game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         game.start();
-
     }
 
     public static void setupHealthBar() {
@@ -79,14 +78,11 @@ public class Snake extends Application {
 
         this.restartButton = new RestartButton();
 
-
-        restartButton.setOnAction(e-> {
-      
-            restart();  
-         });
+        setupHealthBar();
+        restartButton.setOnAction(e-> restart());
 
         game.getChildren().add(restartButton);
-        setupHealthBar();
+
         game.start();
     }
 }
