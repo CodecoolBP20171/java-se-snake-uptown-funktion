@@ -19,6 +19,7 @@ public class Snake extends Application {
     public static Game game;
     public static RestartButton restartButton;
     public static Label health;
+    public static Label ammo;
 
     public static void gameOver(int score) {
         game.stop();
@@ -54,6 +55,7 @@ public class Snake extends Application {
         game.getChildren().clear();
         game = new Game();
         setupHealthBar();
+        setupAmmoBar();
         game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         game.start();
@@ -64,6 +66,13 @@ public class Snake extends Application {
         health.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 80px;");
         game.getChildren().add(health);
+    }
+
+    public static void setupAmmoBar() {
+        ammo = new Label();
+        ammo.setStyle("-fx-font-size: 20px;" +
+                "-fx-padding: 0px 0px 0px 200px;");
+        game.getChildren().add(ammo);
     }
 
     @Override
@@ -79,6 +88,7 @@ public class Snake extends Application {
         this.restartButton = new RestartButton();
 
         setupHealthBar();
+        setupAmmoBar();
         restartButton.setOnAction(e-> restart());
 
         game.getChildren().add(restartButton);

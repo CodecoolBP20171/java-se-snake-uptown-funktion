@@ -36,6 +36,7 @@ public abstract class Laser extends GameEntity implements Animatable{
         //check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (isInteract(entity)) {
+                System.out.println("lol");
                 shot(entity);
             }
         }
