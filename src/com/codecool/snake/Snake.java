@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class Snake extends Application {
         game.stop();
         Globals.leftKeyDown = false;
         Globals.rightKeyDown = false;
+        Globals.score = 0;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
         game = new Game();
@@ -65,13 +67,16 @@ public class Snake extends Application {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 80px;");
+        health.setTextFill(Color.web("ff0000"));
         game.getChildren().add(health);
     }
 
     public static void setupAmmoBar() {
         ammo = new Label();
         ammo.setStyle("-fx-font-size: 20px;" +
-                "-fx-padding: 0px 0px 0px 200px;");
+                "-fx-padding: 0px 0px 0px 250px;" +
+                "-fx-color: blue;");
+        ammo.setTextFill(Color.web("0000ff"));
         game.getChildren().add(ammo);
     }
 

@@ -85,9 +85,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (!isOutOfBounds().equals("in") || health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
-            int score = (int) Globals.getGameObjects().stream()
-                    .filter(w -> w instanceof SnakeBody).count();
-            Snake.gameOver(score);
+            Globals.score += (int) Globals.getGameObjects().stream()
+                    .filter(w -> w instanceof SnakeBody).count()-4;
+            Snake.gameOver(Globals.score);
         }
     }
 
@@ -110,4 +110,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     public int getHealth() {return health;}
 
     public int getAmmo() {return ammo;}
+
+    public void changeAmmo(int diff) { ammo += diff; }
 }

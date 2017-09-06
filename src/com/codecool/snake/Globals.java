@@ -20,6 +20,7 @@ public class Globals {
     public static Image GhostEnemy = new Image("ghost_icon.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image powerupHealth = new Image("powerup_health.png");
+    public static Image powerupAmmo = new Image("powerup_ammo.png");
     public static Image Laser = new Image("snake_body.png");
 
     //.. put here the other images you want to use
@@ -31,6 +32,7 @@ public class Globals {
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
+    public static int score;
 
 
     static {
