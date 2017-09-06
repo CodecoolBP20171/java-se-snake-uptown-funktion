@@ -5,6 +5,8 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.snakes.SnakeHead;
+import com.sun.jmx.snmp.SnmpEngine;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
@@ -31,7 +33,6 @@ public abstract class Laser extends GameEntity implements Animatable{
 
     @Override
     public void step() {
-        System.out.println(heading.getX());
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
         //check if collided with an enemy or a powerup
@@ -50,7 +51,12 @@ public abstract class Laser extends GameEntity implements Animatable{
     // getBoundsInParent().intersects(entity.getBoundsInParent())
     public void shot(GameEntity entity) {
         System.out.println("I shot " + entity);
-        entity.destroy();
+        if (entity.getClass().equals(SnakeHead.class)){
+            SnakeHead sh = (SnakeHead)entity;
+            sh.changeHealth(-10);
+        } else {
+            entity.destroy();
+        }
         this.destroy();
     }
 }
