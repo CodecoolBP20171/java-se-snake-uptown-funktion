@@ -14,10 +14,8 @@ public class Enemy extends GameEntity implements Animatable, Interactable {
 
     protected Point2D heading;
     protected static final int damage = 10;
-    protected Pane pane;
 
     protected double direction;
-    protected int speed;
 
     protected static int numberOfSimpleEnemies=0;
 

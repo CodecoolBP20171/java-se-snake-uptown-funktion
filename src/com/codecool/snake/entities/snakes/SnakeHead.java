@@ -9,6 +9,7 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.laser.Laser;
+import com.codecool.snake.entities.laser.SnakeMissile;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
@@ -22,11 +23,11 @@ public class SnakeHead extends GameEntity implements Animatable {
     public static long laserShootTime;
     public static long lastTimeOfShot;
 
-    public static float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    private static final float speed = 2;
+    private final float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
@@ -55,9 +56,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         if (Globals.laserKeyDown ) {
             long timeFromLastShoot = System.currentTimeMillis() - lastTimeOfShot;
-            System.out.println(timeFromLastShoot);
+//            System.out.println(timeFromLastShoot);
             if (timeFromLastShoot > 1000) {
-                new Laser(pane, this);
+                new SnakeMissile(pane, this);
                 lastTimeOfShot = System.currentTimeMillis();
             }
         }
