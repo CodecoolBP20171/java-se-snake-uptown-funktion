@@ -19,11 +19,13 @@ public class Globals {
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image GhostEnemy = new Image("ghost_icon.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image Laser = new Image("snake_body.png");
 
     //.. put here the other images you want to use
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
+    public static boolean laserKeyDown;
     public static List<GameEntity> gameObjects;
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
