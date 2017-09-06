@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 
 // The base class for every game entity.
 public abstract class GameEntity extends ImageView {
-
+    protected float speed;
     protected Pane pane;
 
     protected GameEntity(Pane pane) {
