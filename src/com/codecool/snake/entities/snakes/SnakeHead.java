@@ -80,7 +80,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
 
         // check for game over condition
-        if (!isOutOfBounds().equals("in") ) { //|| health <= 0) {
+        if (!isOutOfBounds().equals("in") || health <= 0) {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
             int score = (int) Globals.getGameObjects().stream()
@@ -105,5 +105,5 @@ public class SnakeHead extends GameEntity implements Animatable {
         health += diff;
     }
 
-    private int getHealth() {return health;}
+    public int getHealth() {return health;}
 }
