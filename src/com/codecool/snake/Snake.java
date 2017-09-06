@@ -52,17 +52,18 @@ public class Snake extends Application {
         game.getChildren().clear();
         game = new Game();
         game.getChildren().add(restartButton);
-
+        setupHealthBar();
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         game.start();
 
     }
 
-    /*public  void setupHealthBar() {
-        this.health = new Label();
-        label.setStyle("-fx-border-color: blue;");
+    public static void setupHealthBar() {
+        health = new Label();
+        health.setStyle("-fx-font-size: 20px;" +
+                "-fx-padding: 0px 0px 0px 80px;");
         game.getChildren().add(health);
-    }*/
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -83,7 +84,7 @@ public class Snake extends Application {
          });
 
         game.getChildren().add(restartButton);
-
+        setupHealthBar();
         game.start();
     }
 }
