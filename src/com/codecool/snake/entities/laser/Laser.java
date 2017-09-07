@@ -4,11 +4,16 @@ package com.codecool.snake.entities.laser;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import com.sun.jmx.snmp.SnmpEngine;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public abstract class Laser extends GameEntity implements Animatable{
 
@@ -50,13 +55,23 @@ public abstract class Laser extends GameEntity implements Animatable{
 
     // getBoundsInParent().intersects(entity.getBoundsInParent())
     public void shot(GameEntity entity) {
-        System.out.println("I shot " + entity);
+        //System.out.println("I shot " + entity);
         if (entity.getClass().equals(SnakeHead.class)){
             SnakeHead sh = (SnakeHead)entity;
             sh.changeHealth(-10);
         } else {
             entity.destroy();
         }
+        System.out.println(entity);
         this.destroy();
+
+        if (entity instanceof Enemy && this instanceof SnakeMissile && (!(entity instanceof SnakeHead))) {
+            for (GameEntity ent : Globals.getGameObjects()) {
+                if (ent instanceof SnakeHead) Interactable.randomSpawn(pane, (SnakeHead) ent, entity);
+            }
+        }
+
+
+
     }
 }

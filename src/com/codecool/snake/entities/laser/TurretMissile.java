@@ -40,7 +40,6 @@ public class TurretMissile extends Laser implements Interactable {
         if(getBoundsInParent().intersects(entity.getBoundsInParent())){
             Object entityClass = entity.getClass();
             if(entityClass.equals(SnakeHead.class)){
-                System.out.println("FAKOFF");
                 return true;
             }
         }

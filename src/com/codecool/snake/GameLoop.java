@@ -6,6 +6,9 @@ import com.codecool.snake.entities.enemies.GhostEnemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.animation.AnimationTimer;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class GameLoop extends AnimationTimer {
 
     // This gets called every 1/60 seconds
@@ -18,7 +21,6 @@ public class GameLoop extends AnimationTimer {
                 if (gameObject instanceof SnakeHead) {
                     Snake.health.setText("Health: 100/" + Integer.toString(((SnakeHead) gameObject).getHealth()));
                     Snake.ammo.setText("Ammo: " + Integer.toString(((SnakeHead) gameObject).getAmmo()));
-                    Game.randomSpawn((SnakeHead) gameObject);
                 }
             }
         }
