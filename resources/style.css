@@ -1,3 +1,4 @@
 {
-    -fx-background-image: url("rpgTile024.png");
+    -fx-background-image: url("sky.jpg");
+    -fx-background-size: cover;
 }
