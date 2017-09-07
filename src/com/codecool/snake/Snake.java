@@ -60,14 +60,14 @@ public class Snake extends Application {
         Globals.leftKeyDown = false;
         Globals.rightKeyDown = false;
         Globals.laserKeyDown = false;
-
         Globals.score = 0;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
         game = new Game();
-        setupHealthBar();
-        setupAmmoBar();
+        game.setId("game");
         setupScoreDisplay();
+        setupAmmoBar();
+        setupHealthBar();
         game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.getScene().getStylesheets().add("style.css");
@@ -77,7 +77,8 @@ public class Snake extends Application {
     public static void setupHealthBar() {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
-                "-fx-padding: 0px 0px 0px 80px;");
+                "-fx-padding: 0px 0px 0px 80px;" +
+                "-fx-background-color: antiquewhite");
         health.setTextFill(Color.web("ff0000"));
         game.getChildren().add(health);
     }
@@ -86,17 +87,18 @@ public class Snake extends Application {
         ammo = new Label();
         ammo.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 250px;" +
-                "-fx-color: blue;");
+                "-fx-color: blue;" +
+                "-fx-background-color: antiquewhite");
         ammo.setTextFill(Color.web("0000ff"));
         game.getChildren().add(ammo);
     }
-
 
     public static void setupScoreDisplay() {
         scoreDisplay = new Label();
         scoreDisplay.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 360px;" +
-                "-fx-color: blue;");
+                "-fx-color: black;" +
+                "-fx-background-color: antiquewhite");
         game.getChildren().add(scoreDisplay);
     }
 
@@ -105,7 +107,7 @@ public class Snake extends Application {
         this.primaryStage = primaryStage;
         this.game = new Game();
         this.health = new Label();
-
+        game.setId("game");
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.getScene().getStylesheets().add("style.css");
@@ -114,8 +116,9 @@ public class Snake extends Application {
         this.restartButton = new RestartButton();
 
         setupScoreDisplay();
-        setupHealthBar();
         setupAmmoBar();
+        setupHealthBar();
+
         restartButton.setOnAction(e-> restart());
 
         game.getChildren().add(restartButton);
