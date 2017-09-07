@@ -8,9 +8,11 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
-public class Enemy extends GameEntity implements Animatable, Interactable {
+public abstract class Enemy extends GameEntity implements Animatable, Interactable {
 
     protected Point2D heading;
     protected static final int damage = 10;
@@ -82,7 +84,8 @@ public class Enemy extends GameEntity implements Animatable, Interactable {
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
-        new SimpleEnemy(pane, player);
+        Interactable.randomSpawn(pane, player, this);
+
     }
 
     @Override

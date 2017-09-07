@@ -15,7 +15,6 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
-
     public Game() {
         SnakeHead snakeHead= new SnakeHead(this, 500, 500);
 
@@ -30,18 +29,22 @@ public class Game extends Pane {
             new GhostEnemy(this, snakeHead);
             new TurretEnemy(this, snakeHead);
         }
-        new HealthUp(this);
-        new HealthUp(this);
-        new HealthUp(this);
+        new HealthUp(this, snakeHead);
+        new HealthUp(this, snakeHead);
+        new HealthUp(this, snakeHead);
 
-        new AmmoUp(this);
-        new AmmoUp(this);
-        new AmmoUp(this);
+        new AmmoUp(this, snakeHead);
+        new AmmoUp(this, snakeHead);
+        new AmmoUp(this, snakeHead);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+    }
+
+    public static void randomSpawn(SnakeHead snakeHead) {
+        new GhostEnemy(snakeHead.getPane(), snakeHead);
     }
 
     public void start() {

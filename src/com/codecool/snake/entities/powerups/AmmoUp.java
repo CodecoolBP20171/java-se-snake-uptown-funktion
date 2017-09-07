@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class AmmoUp  extends GameEntity implements Interactable {
 
-    public AmmoUp(Pane pane) {
+    public AmmoUp(Pane pane, SnakeHead snake) {
         super(pane);
         setImage(Globals.powerupAmmo);
         pane.getChildren().add(this);
@@ -24,6 +24,7 @@ public class AmmoUp  extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.changeAmmo(1);
         destroy();
+        Interactable.randomSpawn(pane, snakeHead, this);
     }
 
     @Override
