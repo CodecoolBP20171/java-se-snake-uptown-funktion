@@ -17,6 +17,7 @@ public class GameLoop extends AnimationTimer {
                 if (gameObject instanceof SnakeHead) {
                     Snake.health.setText("Health: 100/" + Integer.toString(((SnakeHead) gameObject).getHealth()));
                     Snake.ammo.setText("Ammo: " + Integer.toString(((SnakeHead) gameObject).getAmmo()));
+                    Snake.scoreDisplay.setText("Score: " + Integer.toString(Globals.score));
                 }
             }
         }
