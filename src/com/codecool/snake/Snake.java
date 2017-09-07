@@ -8,11 +8,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javafx.scene.layout.Region.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Snake extends Application {
 
@@ -48,28 +53,11 @@ public class Snake extends Application {
         alert.show();
     }
 
-    public static void restart() {
-        game.stop();
-        Globals.leftKeyDown = false;
-        Globals.rightKeyDown = false;
-        Globals.laserKeyDown = false;
-
-        Globals.score = 0;
-        for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
-        game.getChildren().clear();
-        game = new Game();
-        setupHealthBar();
-        setupAmmoBar();
-        game.getChildren().add(restartButton);
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        primaryStage.getScene().getStylesheets().add("style.css");
-        game.start();
-    }
-
     public static void setupHealthBar() {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
-                "-fx-padding: 0px 0px 0px 80px;");
+                "-fx-padding: 0px 0px 0px 80px;" +
+                "-fx-color: red;");
         health.setTextFill(Color.web("ff0000"));
         game.getChildren().add(health);
     }
@@ -88,20 +76,30 @@ public class Snake extends Application {
         this.primaryStage = primaryStage;
         this.game = new Game();
         this.health = new Label();
-
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.show();
-
         this.restartButton = new RestartButton();
+        restartButton.setOnAction(e-> restart());
+        startGame();
+    }
 
+    public static void restart() {
+        game.stop();
+        Globals.leftKeyDown = false;
+        Globals.rightKeyDown = false;
+        Globals.laserKeyDown = false;
+        Globals.score = 0;
+        for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
+        game.getChildren().clear();
+        game = new Game();
+        startGame();
+    }
+
+    private static void startGame() {
+        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         setupHealthBar();
         setupAmmoBar();
-        restartButton.setOnAction(e-> restart());
-
         game.getChildren().add(restartButton);
-
         game.start();
     }
 }
