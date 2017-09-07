@@ -112,4 +112,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     public int getAmmo() {return ammo;}
 
     public void changeAmmo(int diff) { ammo += diff; }
+
+    public Pane getPane() {return pane;}
 }

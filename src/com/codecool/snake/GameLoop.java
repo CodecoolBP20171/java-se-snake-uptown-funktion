@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.enemies.GhostEnemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.animation.AnimationTimer;
 
@@ -17,6 +18,7 @@ public class GameLoop extends AnimationTimer {
                 if (gameObject instanceof SnakeHead) {
                     Snake.health.setText("Health: 100/" + Integer.toString(((SnakeHead) gameObject).getHealth()));
                     Snake.ammo.setText("Ammo: " + Integer.toString(((SnakeHead) gameObject).getAmmo()));
+                    Game.randomSpawn((SnakeHead) gameObject);
                 }
             }
         }

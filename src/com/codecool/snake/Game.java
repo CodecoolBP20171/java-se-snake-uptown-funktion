@@ -15,11 +15,10 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
-
     public Game() {
         SnakeHead snakeHead= new SnakeHead(this, 500, 500);
 
-        for (int i = 0; i < 1; i++) {
+        /*for (int i = 0; i < 1; i++) {
             new SimpleEnemy(this, snakeHead);
             new SimpleEnemy(this, snakeHead);
             new SimpleEnemy(this, snakeHead);
@@ -41,7 +40,13 @@ public class Game extends Pane {
         new SimplePowerup(this);
         new SimplePowerup(this);
         new SimplePowerup(this);
-        new SimplePowerup(this);
+        new SimplePowerup(this);*/
+
+        new SimpleEnemy(this, snakeHead);
+    }
+
+    public static void randomSpawn(SnakeHead snakeHead) {
+        new GhostEnemy(snakeHead.getPane(), snakeHead);
     }
 
     public void start() {
