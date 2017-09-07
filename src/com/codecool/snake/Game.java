@@ -4,24 +4,11 @@ import com.codecool.snake.entities.enemies.GhostEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.AmmoUp;
 import com.codecool.snake.entities.enemies.TurretEnemy;
-import com.codecool.snake.entities.laser.TurretMissile;
 import com.codecool.snake.entities.powerups.HealthUp;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.net.URL;
-
-import static com.codecool.snake.Snake.primaryStage;
-
-
 
 public class Game extends Pane {
 

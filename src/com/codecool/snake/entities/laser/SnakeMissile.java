@@ -11,9 +11,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
-public
-
-class SnakeMissile extends Laser implements Interactable{
+public class SnakeMissile extends Laser implements Interactable{
 
     private SnakeHead snakeHead;
 

@@ -4,27 +4,17 @@ import com.codecool.snake.entities.GameEntity;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Snake extends Application {
 
-    public static Stage primaryStage;
-    public static Game game;
-    public static RestartButton restartButton;
+    private static Stage primaryStage;
+    private static Game game;
+    private static Button restartButton;
     public static Label health;
     public static Label ammo;
     public static Label scoreDisplay;
@@ -88,7 +78,7 @@ public class Snake extends Application {
         this.primaryStage = primaryStage;
         this.game = new Game();
         this.health = new Label();
-        this.restartButton = new RestartButton();
+        this.restartButton = new Button("Restart");
         restartButton.setOnAction(e-> restart());
         primaryStage.setTitle("Snake Game");
         primaryStage.show();

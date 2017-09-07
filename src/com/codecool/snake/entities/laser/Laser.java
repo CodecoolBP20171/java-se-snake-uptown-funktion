@@ -7,13 +7,8 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import com.sun.jmx.snmp.SnmpEngine;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public abstract class Laser extends GameEntity implements Animatable{
 
