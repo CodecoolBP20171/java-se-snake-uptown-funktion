@@ -1,14 +1,10 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.Game;
-import com.codecool.snake.Snake;
+
+import com.codecool.snake.*;
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.laser.Laser;
 import com.codecool.snake.entities.laser.SnakeMissile;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -57,7 +53,6 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         if (Globals.laserKeyDown && ammo > 0) {
             long timeFromLastShoot = System.currentTimeMillis() - lastTimeOfShot;
-//            System.out.println(timeFromLastShoot);
             if (timeFromLastShoot > 1000) {
                 new SnakeMissile(pane, this);
                 lastTimeOfShot = System.currentTimeMillis();
@@ -76,7 +71,6 @@ public class SnakeHead extends GameEntity implements Animatable {
                 if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
-                    System.out.println(interactable.getMessage());
                 }
             }
         }
@@ -84,10 +78,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (!isOutOfBounds().equals("in") || health <= 0) {
             System.out.println("Game Over");
+            Globals.music.playSound("Kitty-meow.mp3");
             Globals.gameLoop.stop();
-            Globals.score += (int) Globals.getGameObjects().stream()
-                    .filter(w -> w instanceof SnakeBody).count()-4;
-            Snake.gameOver(Globals.score);
+            Snake.gameOver();
         }
     }
 
@@ -112,4 +105,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     public int getAmmo() {return ammo;}
 
     public void changeAmmo(int diff) { ammo += diff; }
+
+    public Pane getPane() {return pane;}
 }

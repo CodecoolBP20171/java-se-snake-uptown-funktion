@@ -14,15 +14,19 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
+
+import static com.codecool.snake.Snake.primaryStage;
 
 
 
 public class Game extends Pane {
 
-
     public Game() {
         SnakeHead snakeHead= new SnakeHead(this, 500, 500);
-
         for (int i = 0; i < 1; i++) {
             new SimpleEnemy(this, snakeHead);
             new SimpleEnemy(this, snakeHead);
@@ -34,18 +38,22 @@ public class Game extends Pane {
             new GhostEnemy(this, snakeHead);
             new TurretEnemy(this, snakeHead);
         }
-        new HealthUp(this);
-        new HealthUp(this);
-        new HealthUp(this);
+        new HealthUp(this, snakeHead);
+        new HealthUp(this, snakeHead);
+        new HealthUp(this, snakeHead);
 
-        new AmmoUp(this);
-        new AmmoUp(this);
-        new AmmoUp(this);
+        new AmmoUp(this, snakeHead);
+        new AmmoUp(this, snakeHead);
+        new AmmoUp(this, snakeHead);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+        new SimplePowerup(this, snakeHead);
+    }
+
+    public static void randomSpawn(SnakeHead snakeHead) {
+        new GhostEnemy(snakeHead.getPane(), snakeHead);
     }
 
 
