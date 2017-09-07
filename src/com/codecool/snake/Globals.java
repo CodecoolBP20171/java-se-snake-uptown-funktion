@@ -14,18 +14,19 @@ public class Globals {
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
 
-    public static Image snakeHead = new Image("snake_head.png");
-    public static Image snakeBody = new Image("snake_body.png");
-    public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image GhostEnemy = new Image("ghost_icon.png");
-    public static Image turretEnemy = new Image("turret_icon.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image snakeHead = new Image("nyan_cat_icon.png");
+    public static Image snakeBody = new Image("Nyan-Cat-body_icon.png");
+    public static Image simpleEnemy = new Image("nyan_dog_enemy1.png");
+    public static Image GhostEnemy = new Image("nyanDog.png");
+    public static Image turretEnemy = new Image("darknyancat.gif");
+    public static Image powerupBerry = new Image("cloud.png");
     public static Image powerupHealth = new Image("powerup_health.png");
-    public static Image powerupAmmo = new Image("powerup_ammo.png");
+    public static Image powerupAmmo = new Image("cupckae.png");
     public static Image Laser = new Image("snake_body.png");
-    public static Image snakeMissile = new Image("snake_missile.png");
-    public static Image turretMissile = new Image("turret_missile.png");
+    public static Image snakeMissile = new Image("Rainbow_Paintball.png");
+    public static Image turretMissile = new Image("skull.gif");
     public static Music music = new Music();
+
 
     //.. put here the other images you want to use
 

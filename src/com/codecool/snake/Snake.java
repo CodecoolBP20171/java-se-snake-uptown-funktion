@@ -60,6 +60,7 @@ public class Snake extends Application {
         Globals.leftKeyDown = false;
         Globals.rightKeyDown = false;
         Globals.laserKeyDown = false;
+
         Globals.score = 0;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
@@ -69,6 +70,7 @@ public class Snake extends Application {
         setupScoreDisplay();
         game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        primaryStage.getScene().getStylesheets().add("style.css");
         game.start();
     }
 
@@ -106,6 +108,7 @@ public class Snake extends Application {
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        primaryStage.getScene().getStylesheets().add("style.css");
         primaryStage.show();
 
         this.restartButton = new RestartButton();

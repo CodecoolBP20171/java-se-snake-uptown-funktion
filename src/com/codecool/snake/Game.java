@@ -9,6 +9,10 @@ import com.codecool.snake.entities.powerups.HealthUp;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -51,6 +55,8 @@ public class Game extends Pane {
     public static void randomSpawn(SnakeHead snakeHead) {
         new GhostEnemy(snakeHead.getPane(), snakeHead);
     }
+
+
 
     public void start() {
         Scene scene = getScene();
