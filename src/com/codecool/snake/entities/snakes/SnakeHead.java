@@ -1,11 +1,10 @@
 package com.codecool.snake.entities.snakes;
 
+
 import com.codecool.snake.*;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.laser.Laser;
 import com.codecool.snake.entities.laser.SnakeMissile;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -73,7 +72,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
-                    System.out.println(interactable.getMessage());
+                    //System.out.println(interactable.getMessage());
                 }
             }
         }
@@ -83,9 +82,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             System.out.println("Game Over");
             Globals.music.playSound("Kitty-meow.mp3");
             Globals.gameLoop.stop();
-            Globals.score += (int) Globals.getGameObjects().stream()
-                    .filter(w -> w instanceof SnakeBody).count()-4;
-            Snake.gameOver(Globals.score);
+            Snake.gameOver();
         }
     }
 
@@ -110,4 +107,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     public int getAmmo() {return ammo;}
 
     public void changeAmmo(int diff) { ammo += diff; }
+
+    public Pane getPane() {return pane;}
 }
