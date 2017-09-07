@@ -20,8 +20,7 @@ public class Globals {
     public static Image turretEnemy = new Image("darknyancat.gif");
     public static Image powerupBerry = new Image("cloud.png");
     public static Image powerupHealth = new Image("powerup_health.png");
-    public static Image powerupAmmo = new Image("cupckae.png");
-    public static Image Laser = new Image("snake_body.png");
+    public static Image powerupAmmo = new Image("cupcake.png");
     public static Image snakeMissile = new Image("Rainbow_Paintball.png");
     public static Image turretMissile = new Image("skull.gif");
     public static Music music = new Music();

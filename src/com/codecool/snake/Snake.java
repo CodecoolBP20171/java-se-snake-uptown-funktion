@@ -55,25 +55,6 @@ public class Snake extends Application {
         alert.show();
     }
 
-    public static void restart() {
-        game.stop();
-        Globals.leftKeyDown = false;
-        Globals.rightKeyDown = false;
-        Globals.laserKeyDown = false;
-        Globals.score = 0;
-        for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
-        game.getChildren().clear();
-        game = new Game();
-        game.setId("game");
-        setupScoreDisplay();
-        setupAmmoBar();
-        setupHealthBar();
-        game.getChildren().add(restartButton);
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        primaryStage.getScene().getStylesheets().add("style.css");
-        game.start();
-    }
-
     public static void setupHealthBar() {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
@@ -107,24 +88,33 @@ public class Snake extends Application {
         this.primaryStage = primaryStage;
         this.game = new Game();
         this.health = new Label();
-        game.setId("game");
+        this.restartButton = new RestartButton();
+        restartButton.setOnAction(e-> restart());
         primaryStage.setTitle("Snake Game");
+        primaryStage.show();
+        startGame();
+    }
+
+    public static void restart() {
+        game.stop();
+        Globals.leftKeyDown = false;
+        Globals.rightKeyDown = false;
+        Globals.laserKeyDown = false;
+        Globals.score = 0;
+        for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
+        game.getChildren().clear();
+        game = new Game();
+        startGame();
+    }
+
+    public static void startGame() {
+        game.setId("game");
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.getScene().getStylesheets().add("style.css");
-        primaryStage.show();
-
-        this.restartButton = new RestartButton();
-
         setupScoreDisplay();
         setupAmmoBar();
         setupHealthBar();
-
-        restartButton.setOnAction(e-> restart());
-
         game.getChildren().add(restartButton);
-
         game.start();
-
-
     }
 }
