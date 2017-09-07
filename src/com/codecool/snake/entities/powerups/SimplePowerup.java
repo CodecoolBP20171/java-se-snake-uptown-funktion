@@ -26,6 +26,7 @@ public class SimplePowerup extends GameEntity implements Interactable {
         snakeHead.addPart(4);
         Globals.score += 4;
         destroy();
+        Globals.music.playSound("purr.mp3");
         Interactable.randomSpawn(pane, snakeHead, this);
     }
 

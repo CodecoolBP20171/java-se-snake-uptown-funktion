@@ -83,6 +83,7 @@ public abstract class Enemy extends GameEntity implements Animatable, Interactab
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
+        Globals.music.playSound("Kitty-meow.mp3");
         destroy();
         Interactable.randomSpawn(pane, player, this);
 

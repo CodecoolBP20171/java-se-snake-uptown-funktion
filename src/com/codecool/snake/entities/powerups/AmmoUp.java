@@ -24,6 +24,7 @@ public class AmmoUp  extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.changeAmmo(1);
         destroy();
+        Globals.music.playSound("purr.mp3");
         Interactable.randomSpawn(pane, snakeHead, this);
     }
 

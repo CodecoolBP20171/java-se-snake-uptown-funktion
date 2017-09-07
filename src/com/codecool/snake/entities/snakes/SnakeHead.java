@@ -1,10 +1,9 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.Snake;
+
+import com.codecool.snake.*;
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.laser.SnakeMissile;
 import javafx.geometry.Point2D;
@@ -81,6 +80,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (!isOutOfBounds().equals("in") || health <= 0) {
             System.out.println("Game Over");
+            Globals.music.playSound("Kitty-meow.mp3");
             Globals.gameLoop.stop();
             Snake.gameOver();
         }

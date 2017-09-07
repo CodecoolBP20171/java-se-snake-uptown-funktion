@@ -22,6 +22,7 @@ class SnakeMissile extends Laser implements Interactable{
         speed = snake.getSpeed() * 2;
         this.snakeHead = snake;
         this.heading = setDirection();
+        Globals.music.playSound("spit.mp3");
     }
 
     @Override

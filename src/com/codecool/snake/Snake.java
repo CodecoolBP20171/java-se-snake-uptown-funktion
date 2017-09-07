@@ -8,9 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +89,7 @@ public class Snake extends Application {
         game.getChildren().add(ammo);
     }
 
+
     public static void setupScoreDisplay() {
         scoreDisplay = new Label();
         scoreDisplay.setStyle("-fx-font-size: 20px;" +
@@ -111,5 +118,7 @@ public class Snake extends Application {
         game.getChildren().add(restartButton);
 
         game.start();
+
+
     }
 }
