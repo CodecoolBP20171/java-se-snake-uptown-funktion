@@ -81,6 +81,7 @@ public class Enemy extends GameEntity implements Animatable, Interactable {
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
+        Globals.music.playSound("Kitty-meow.mp3");
         destroy();
         new SimpleEnemy(pane, player);
     }

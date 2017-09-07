@@ -27,6 +27,7 @@ public class HealthUp extends GameEntity implements Interactable {
             snakeHead.changeHealth(10);
         }
         destroy();
+        Globals.music.playSound("purr.mp3");
     }
 
     @Override

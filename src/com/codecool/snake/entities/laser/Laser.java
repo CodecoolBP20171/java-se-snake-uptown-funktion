@@ -54,6 +54,7 @@ public abstract class Laser extends GameEntity implements Animatable{
         if (entity.getClass().equals(SnakeHead.class)){
             SnakeHead sh = (SnakeHead)entity;
             sh.changeHealth(-10);
+            Globals.music.playSound("Kitty-meow.mp3");
         } else {
             entity.destroy();
         }

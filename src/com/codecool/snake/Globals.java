@@ -25,6 +25,7 @@ public class Globals {
     public static Image Laser = new Image("snake_body.png");
     public static Image snakeMissile = new Image("snake_missile.png");
     public static Image turretMissile = new Image("turret_missile.png");
+    public static Music music = new Music();
 
     //.. put here the other images you want to use
 

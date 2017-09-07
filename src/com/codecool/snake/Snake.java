@@ -8,9 +8,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +86,7 @@ public class Snake extends Application {
         game.getChildren().add(ammo);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -99,5 +106,7 @@ public class Snake extends Application {
         game.getChildren().add(restartButton);
 
         game.start();
+
+
     }
 }
