@@ -31,21 +31,19 @@ public abstract class Enemy extends GameEntity implements Animatable, Interactab
         boolean looper = true;
         while (looper) {
             Random rndSpawn = new Random();
-            if (!checkCoordinate(rndSpawn, snake)) {
-                if((snake.getY() + (double) 10 >
-                        enemyCoordinateY(rndSpawn) && snake.getY() - (double) 10 <
-                        enemyCoordinateY(rndSpawn)) ||
-                        (snake.getX() + (double) 10 >
-                                enemyCoordinateX(rndSpawn) && snake.getX() - (double) 10 <
-                                enemyCoordinateX(rndSpawn))) {
+            if((snake.getY() + (double) 10 >
+                    enemyCoordinateY(rndSpawn) && snake.getY() - (double) 10 <
+                    enemyCoordinateY(rndSpawn)) ||
+                    (snake.getX() + (double) 10 >
+                            enemyCoordinateX(rndSpawn) && snake.getX() - (double) 10 <
+                            enemyCoordinateX(rndSpawn))) {
 
-                    setX(rndSpawn.nextDouble() * Globals.WINDOW_WIDTH);
-                    setY(rndSpawn.nextDouble() * Globals.WINDOW_HEIGHT);
-                    double direction = rndSpawn.nextDouble() * 360;
-                    setRotate(direction);
-                    heading = Utils.directionToVector(direction, speed);
-                    looper = false;
-                }
+                setX(rndSpawn.nextDouble() * Globals.WINDOW_WIDTH);
+                setY(rndSpawn.nextDouble() * Globals.WINDOW_HEIGHT);
+                double direction = rndSpawn.nextDouble() * 360;
+                setRotate(direction);
+                heading = Utils.directionToVector(direction, speed);
+                looper = false;
             }
         }
     }
@@ -54,12 +52,6 @@ public abstract class Enemy extends GameEntity implements Animatable, Interactab
     public void step() {
         String isBounce = isOutOfBounds();
         if (!isBounce.equals("in")) {
-            //destroy();
-            /*
-            System.out.println("x" + getX() + " y " + getY());
-            System.out.println("Bouncing " + this.id + " from " + isBounce);
-            System.out.println("pre " + direction);
-            */
             if (isBounce.equals("right") || isBounce.equals("left")) direction = - direction;
             else direction = 180 - direction;
 
@@ -91,19 +83,6 @@ public abstract class Enemy extends GameEntity implements Animatable, Interactab
     @Override
     public String getMessage() {
         return "" + damage + " damage";
-    }
-
-    public boolean checkCoordinate(Random random, SnakeHead snake) {
-
-        for (GameEntity snakePart : snake.getSnakeParts()) {
-            if((snakePart.getY() + (double) 10 >
-                    enemyCoordinateY(random) && snakePart.getY() - (double) 10 <
-                    enemyCoordinateY(random)) ||
-                    (snakePart.getX() + (double) 10 >
-                            enemyCoordinateX(random) && snakePart.getX() - (double) 10 <
-                            enemyCoordinateX(random))) return true;
-        }
-        return false;
     }
 
     public double enemyCoordinateX(Random random) {
