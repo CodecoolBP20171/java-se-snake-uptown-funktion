@@ -52,6 +52,7 @@ public class Snake extends Application {
         game.stop();
         Globals.leftKeyDown = false;
         Globals.rightKeyDown = false;
+        Globals.laserKeyDown = false;
         Globals.score = 0;
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
