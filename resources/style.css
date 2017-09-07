@@ -1,3 +1,4 @@
-{
-    -fx-background-image: url("rpgTile024.png");
+#game {
+    -fx-background-image: url("background.png");
+    -fx-background-size: cover;
 }

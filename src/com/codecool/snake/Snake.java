@@ -12,9 +12,15 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import javafx.scene.layout.Region.*;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +32,9 @@ public class Snake extends Application {
     public static RestartButton restartButton;
     public static Label health;
     public static Label ammo;
+    public static Label scoreDisplay;
 
-    public static void gameOver(int score) {
+    public static void gameOver() {
         game.stop();
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
@@ -41,7 +48,7 @@ public class Snake extends Application {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("You're dead: Game Over");
-        alert.setContentText("Score: " + score);
+        alert.setContentText("Score: " + Globals.score);
         alert.getButtonTypes().setAll(buttonList);
         alert.setOnHidden(evt -> {
             if(alert.getResult() == restartButton){
@@ -57,7 +64,7 @@ public class Snake extends Application {
         health = new Label();
         health.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 80px;" +
-                "-fx-color: red;");
+                "-fx-background-color: antiquewhite");
         health.setTextFill(Color.web("ff0000"));
         game.getChildren().add(health);
     }
@@ -66,9 +73,19 @@ public class Snake extends Application {
         ammo = new Label();
         ammo.setStyle("-fx-font-size: 20px;" +
                 "-fx-padding: 0px 0px 0px 250px;" +
-                "-fx-color: blue;");
+                "-fx-color: blue;" +
+                "-fx-background-color: antiquewhite");
         ammo.setTextFill(Color.web("0000ff"));
         game.getChildren().add(ammo);
+    }
+
+    public static void setupScoreDisplay() {
+        scoreDisplay = new Label();
+        scoreDisplay.setStyle("-fx-font-size: 20px;" +
+                "-fx-padding: 0px 0px 0px 360px;" +
+                "-fx-color: black;" +
+                "-fx-background-color: antiquewhite");
+        game.getChildren().add(scoreDisplay);
     }
 
     @Override
@@ -76,6 +93,7 @@ public class Snake extends Application {
         this.primaryStage = primaryStage;
         this.game = new Game();
         this.health = new Label();
+        game.setId("game");   
         primaryStage.setTitle("Snake Game");
         primaryStage.show();
         this.restartButton = new RestartButton();
@@ -97,9 +115,12 @@ public class Snake extends Application {
 
     private static void startGame() {
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        setupHealthBar();
+        setupScoreDisplay();
         setupAmmoBar();
+        setupHealthBar();
         game.getChildren().add(restartButton);
         game.start();
+
+
     }
 }
