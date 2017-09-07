@@ -9,6 +9,10 @@ import com.codecool.snake.entities.powerups.HealthUp;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 
 
@@ -43,6 +47,8 @@ public class Game extends Pane {
         new SimplePowerup(this);
         new SimplePowerup(this);
     }
+
+
 
     public void start() {
         Scene scene = getScene();
