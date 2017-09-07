@@ -21,8 +21,9 @@ public class Snake extends Application {
     public static RestartButton restartButton;
     public static Label health;
     public static Label ammo;
+    public static Label scoreDisplay;
 
-    public static void gameOver(int score) {
+    public static void gameOver() {
         game.stop();
         for (GameEntity entity : Globals.getGameObjects()) entity.destroy();
         game.getChildren().clear();
@@ -36,7 +37,7 @@ public class Snake extends Application {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game Over");
         alert.setHeaderText("You're dead: Game Over");
-        alert.setContentText("Score: " + score);
+        alert.setContentText("Score: " + Globals.score);
         alert.getButtonTypes().setAll(buttonList);
         alert.setOnHidden(evt -> {
             if(alert.getResult() == restartButton){
@@ -58,6 +59,7 @@ public class Snake extends Application {
         game = new Game();
         setupHealthBar();
         setupAmmoBar();
+        setupScoreDisplay();
         game.getChildren().add(restartButton);
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         game.start();
@@ -80,6 +82,14 @@ public class Snake extends Application {
         game.getChildren().add(ammo);
     }
 
+    public static void setupScoreDisplay() {
+        scoreDisplay = new Label();
+        scoreDisplay.setStyle("-fx-font-size: 20px;" +
+                "-fx-padding: 0px 0px 0px 360px;" +
+                "-fx-color: blue;");
+        game.getChildren().add(scoreDisplay);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -92,6 +102,7 @@ public class Snake extends Application {
 
         this.restartButton = new RestartButton();
 
+        setupScoreDisplay();
         setupHealthBar();
         setupAmmoBar();
         restartButton.setOnAction(e-> restart());
