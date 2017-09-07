@@ -24,7 +24,11 @@ public class SnakeBody extends GameEntity implements Animatable {
 
         // place it visually below the current tail
         List<Node> children = pane.getChildren();
-        children.add(children.indexOf(parent), this);
+        int childIndex = children.indexOf(parent);
+        if(childIndex < 0 ){
+            childIndex = 0;
+        }
+        children.add(childIndex, this);
 
         double xc = parent.getX();
         double yc = parent.getY();
