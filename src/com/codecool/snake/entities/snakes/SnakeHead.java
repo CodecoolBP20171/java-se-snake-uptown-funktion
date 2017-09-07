@@ -53,7 +53,6 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         if (Globals.laserKeyDown && ammo > 0) {
             long timeFromLastShoot = System.currentTimeMillis() - lastTimeOfShot;
-//            System.out.println(timeFromLastShoot);
             if (timeFromLastShoot > 1000) {
                 new SnakeMissile(pane, this);
                 lastTimeOfShot = System.currentTimeMillis();
@@ -72,7 +71,6 @@ public class SnakeHead extends GameEntity implements Animatable {
                 if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;
                     interactable.apply(this);
-                    //System.out.println(interactable.getMessage());
                 }
             }
         }

@@ -53,9 +53,7 @@ public abstract class Laser extends GameEntity implements Animatable{
 
     public abstract boolean isInteract(GameEntity entity);
 
-    // getBoundsInParent().intersects(entity.getBoundsInParent())
     public void shot(GameEntity entity) {
-        //System.out.println("I shot " + entity);
         if (entity.getClass().equals(SnakeHead.class)){
             SnakeHead sh = (SnakeHead)entity;
             sh.changeHealth(-10);
@@ -63,7 +61,6 @@ public abstract class Laser extends GameEntity implements Animatable{
         } else {
             entity.destroy();
         }
-        System.out.println(entity);
         this.destroy();
 
         if (entity instanceof Enemy && this instanceof SnakeMissile && (!(entity instanceof SnakeHead))) {
